@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddb.tourism.mapper.TourScenicMapper" >
+  <resultMap id="BaseResultMap" type="com.ddb.tourism.pojo.TourScenic" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="scenicName" property="scenicName" jdbcType="VARCHAR" />
+    <result column="scenicNum" property="scenicNum" jdbcType="INTEGER" />
+    <result column="scenicAddress" property="scenicAddress" jdbcType="VARCHAR" />
+    <result column="pic1" property="pic1" jdbcType="VARCHAR" />
+    <result column="title1" property="title1" jdbcType="VARCHAR" />
+    <result column="pic2" property="pic2" jdbcType="VARCHAR" />
+    <result column="pic3" property="pic3" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DOUBLE" />
+    <result column="scenic_time" property="scenic_time" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="creator_id" property="creator_id" jdbcType="INTEGER" />
+    <result column="tags" property="tags" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ddb.tourism.pojo.TourScenic" extends="BaseResultMap" >
+    <result column="describle" property="describle" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, scenicName, scenicNum, scenicAddress, pic1, title1, pic2, pic3, cost, scenic_time, 
+    tel, creator_id, tags
+  </sql>
+  <sql id="Blob_Column_List" >
+    describle
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tour_scenic
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tour_scenic
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ddb.tourism.pojo.TourScenic" >
+    insert into tour_scenic (id, scenicName, scenicNum, 
+      scenicAddress, pic1, title1, 
+      pic2, pic3, cost, scenic_time, 
+      tel, creator_id, tags, 
+      describle)
+    values (#{id,jdbcType=BIGINT}, #{scenicName,jdbcType=VARCHAR}, #{scenicNum,jdbcType=INTEGER}, 
+      #{scenicAddress,jdbcType=VARCHAR}, #{pic1,jdbcType=VARCHAR}, #{title1,jdbcType=VARCHAR}, 
+      #{pic2,jdbcType=VARCHAR}, #{pic3,jdbcType=VARCHAR}, #{cost,jdbcType=DOUBLE}, #{scenic_time,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{creator_id,jdbcType=INTEGER}, #{tags,jdbcType=VARCHAR}, 
+      #{describle,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ddb.tourism.pojo.TourScenic" >
+    insert into tour_scenic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="scenicName != null" >
+        scenicName,
+      </if>
+      <if test="scenicNum != null" >
+        scenicNum,
+      </if>
+      <if test="scenicAddress != null" >
+        scenicAddress,
+      </if>
+      <if test="pic1 != null" >
+        pic1,
+      </if>
+      <if test="title1 != null" >
+        title1,
+      </if>
+      <if test="pic2 != null" >
+        pic2,
+      </if>
+      <if test="pic3 != null" >
+        pic3,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="scenic_time != null" >
+        scenic_time,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="creator_id != null" >
+        creator_id,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="describle != null" >
+        describle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="scenicName != null" >
+        #{scenicName,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicNum != null" >
+        #{scenicNum,jdbcType=INTEGER},
+      </if>
+      <if test="scenicAddress != null" >
+        #{scenicAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null" >
+        #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="title1 != null" >
+        #{title1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null" >
+        #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="scenic_time != null" >
+        #{scenic_time,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="creator_id != null" >
+        #{creator_id,jdbcType=INTEGER},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="describle != null" >
+        #{describle,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ddb.tourism.pojo.TourScenic" >
+    update tour_scenic
+    <set >
+      <if test="scenicName != null" >
+        scenicName = #{scenicName,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicNum != null" >
+        scenicNum = #{scenicNum,jdbcType=INTEGER},
+      </if>
+      <if test="scenicAddress != null" >
+        scenicAddress = #{scenicAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null" >
+        pic1 = #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="title1 != null" >
+        title1 = #{title1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        pic2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null" >
+        pic3 = #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="scenic_time != null" >
+        scenic_time = #{scenic_time,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="creator_id != null" >
+        creator_id = #{creator_id,jdbcType=INTEGER},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="describle != null" >
+        describle = #{describle,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ddb.tourism.pojo.TourScenic" >
+    update tour_scenic
+    set scenicName = #{scenicName,jdbcType=VARCHAR},
+      scenicNum = #{scenicNum,jdbcType=INTEGER},
+      scenicAddress = #{scenicAddress,jdbcType=VARCHAR},
+      pic1 = #{pic1,jdbcType=VARCHAR},
+      title1 = #{title1,jdbcType=VARCHAR},
+      pic2 = #{pic2,jdbcType=VARCHAR},
+      pic3 = #{pic3,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DOUBLE},
+      scenic_time = #{scenic_time,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      creator_id = #{creator_id,jdbcType=INTEGER},
+      tags = #{tags,jdbcType=VARCHAR},
+      describle = #{describle,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ddb.tourism.pojo.TourScenic" >
+    update tour_scenic
+    set scenicName = #{scenicName,jdbcType=VARCHAR},
+      scenicNum = #{scenicNum,jdbcType=INTEGER},
+      scenicAddress = #{scenicAddress,jdbcType=VARCHAR},
+      pic1 = #{pic1,jdbcType=VARCHAR},
+      title1 = #{title1,jdbcType=VARCHAR},
+      pic2 = #{pic2,jdbcType=VARCHAR},
+      pic3 = #{pic3,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DOUBLE},
+      scenic_time = #{scenic_time,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      creator_id = #{creator_id,jdbcType=INTEGER},
+      tags = #{tags,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

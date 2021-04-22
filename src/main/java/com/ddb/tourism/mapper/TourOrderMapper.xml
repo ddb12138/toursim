@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddb.tourism.mapper.TourOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.ddb.tourism.pojo.TourOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="order_id" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="order_status" property="order_status" jdbcType="TINYINT" />
+    <result column="scenic_id" property="scenic_id" jdbcType="INTEGER" />
+    <result column="ticket_num" property="ticket_num" jdbcType="INTEGER" />
+    <result column="ticket_price" property="ticket_price" jdbcType="INTEGER" />
+    <result column="ticket_total" property="ticket_total" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, addtime, order_status, scenic_id, ticket_num, ticket_price, ticket_total
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tour_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tour_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ddb.tourism.pojo.TourOrder" >
+    insert into tour_order (id, order_id, addtime, 
+      order_status, scenic_id, ticket_num, 
+      ticket_price, ticket_total)
+    values (#{id,jdbcType=BIGINT}, #{order_id,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{order_status,jdbcType=TINYINT}, #{scenic_id,jdbcType=INTEGER}, #{ticket_num,jdbcType=INTEGER}, 
+      #{ticket_price,jdbcType=INTEGER}, #{ticket_total,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ddb.tourism.pojo.TourOrder" >
+    insert into tour_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="order_id != null" >
+        order_id,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="order_status != null" >
+        order_status,
+      </if>
+      <if test="scenic_id != null" >
+        scenic_id,
+      </if>
+      <if test="ticket_num != null" >
+        ticket_num,
+      </if>
+      <if test="ticket_price != null" >
+        ticket_price,
+      </if>
+      <if test="ticket_total != null" >
+        ticket_total,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="order_id != null" >
+        #{order_id,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="order_status != null" >
+        #{order_status,jdbcType=TINYINT},
+      </if>
+      <if test="scenic_id != null" >
+        #{scenic_id,jdbcType=INTEGER},
+      </if>
+      <if test="ticket_num != null" >
+        #{ticket_num,jdbcType=INTEGER},
+      </if>
+      <if test="ticket_price != null" >
+        #{ticket_price,jdbcType=INTEGER},
+      </if>
+      <if test="ticket_total != null" >
+        #{ticket_total,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ddb.tourism.pojo.TourOrder" >
+    update tour_order
+    <set >
+      <if test="order_id != null" >
+        order_id = #{order_id,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="order_status != null" >
+        order_status = #{order_status,jdbcType=TINYINT},
+      </if>
+      <if test="scenic_id != null" >
+        scenic_id = #{scenic_id,jdbcType=INTEGER},
+      </if>
+      <if test="ticket_num != null" >
+        ticket_num = #{ticket_num,jdbcType=INTEGER},
+      </if>
+      <if test="ticket_price != null" >
+        ticket_price = #{ticket_price,jdbcType=INTEGER},
+      </if>
+      <if test="ticket_total != null" >
+        ticket_total = #{ticket_total,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ddb.tourism.pojo.TourOrder" >
+    update tour_order
+    set order_id = #{order_id,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      order_status = #{order_status,jdbcType=TINYINT},
+      scenic_id = #{scenic_id,jdbcType=INTEGER},
+      ticket_num = #{ticket_num,jdbcType=INTEGER},
+      ticket_price = #{ticket_price,jdbcType=INTEGER},
+      ticket_total = #{ticket_total,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

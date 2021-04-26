@@ -26,6 +26,9 @@
   <sql id="Blob_Column_List" >
     describle
   </sql>
+  <select id="getScenicHomePage" resultMap="BaseResultMap">
+    select * from tour_scenic
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

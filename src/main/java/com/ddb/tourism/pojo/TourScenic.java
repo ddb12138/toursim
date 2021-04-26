@@ -29,6 +29,27 @@ public class TourScenic {
 
     private String describle;
 
+
+    @Override
+    public String toString() {
+        return "TourScenic{" +
+                "id=" + id +
+                ", scenicName='" + scenicName + '\'' +
+                ", scenicNum=" + scenicNum +
+                ", scenicAddress='" + scenicAddress + '\'' +
+                ", pic1='" + pic1 + '\'' +
+                ", title1='" + title1 + '\'' +
+                ", pic2='" + pic2 + '\'' +
+                ", pic3='" + pic3 + '\'' +
+                ", cost=" + cost +
+                ", scenic_time='" + scenic_time + '\'' +
+                ", tel='" + tel + '\'' +
+                ", creator_id=" + creator_id +
+                ", tags='" + tags + '\'' +
+                ", describle='" + describle + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
